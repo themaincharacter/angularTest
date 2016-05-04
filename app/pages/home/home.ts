@@ -1,30 +1,25 @@
-import {Page, NavController} from 'ionic-angular';
-import {GitHubService} from '../../services/github';
-import {DetailsPage} from '../details/details';
+import {Page, NavController, NavParams, Tab, Tabs} from 'ionic-angular';
 
 @Page({
-    templateUrl: 'build/pages/home/home.html',
-    providers: [GitHubService]
+    templateUrl: 'build/pages/details/details.html'
 })
 export class HomePage {
-    public foundRepos;
-    public username;
+    public readme = '';
  
-    constructor(private github: GitHubService, 
-                private nav: NavController) {
-    }
-
-    getRepos() {
-        this.github.getRepos(this.username).subscribe(
-            data => {
-                this.foundRepos = data.json();
-            },
-            err => console.error(err),
-            () => console.log('getRepos completed')
-        );
-    }
-    
-    goToDetails(repo) {
-        this.nav.push(DetailsPage, { repo: repo });
+    constructor(private nav: NavController) {
+        this.nav.setRoot(HomePage);
+        // this.repo = navParams.get('repo');
+        
+        // this.github.getDetails(this.repo).subscribe(
+        //     data => this.readme = data.text(),
+        //     err => {
+        //         if (err.status == 404) {
+        //             this.readme = 'This repo does not have a README. :(';
+        //         } else {
+        //             console.error(err);
+        //         }
+        //     },
+        //     () => console.log('getDetails completed')
+        // );
     }
 }

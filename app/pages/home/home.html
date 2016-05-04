@@ -1,25 +1,53 @@
 <ion-navbar *navbar>
     <ion-title>
-        GitHub
+        HOME
     </ion-title>
 </ion-navbar>
 
-<ion-content class="home">
-    <ion-list inset>
-        <ion-item>
-            <ion-label>Username</ion-label>
-            <ion-input [(ngModel)]="username" type="text"></ion-input>
-        </ion-item>
+<ion-content>
+  <div padding>
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="Stuff">
+        Stuff
+      </ion-segment-button>
+      <ion-segment-button value="Other Stuff">
+        Other Stuff
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="pet">
+    <ion-list *ngSwitchWhen="'Stuff'">
+      <ion-item>
+        <ion-thumbnail item-left>
+        </ion-thumbnail>
+        <h2>list item 1</h2>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-left>
+        </ion-thumbnail>
+        <h2>list item 2</h2>
+      </ion-item>      
+      <ion-item>
+      <ion-thumbnail item-left>
+        </ion-thumbnail>
+        <h2>list item 3</h2>
+      </ion-item>
     </ion-list>
-    <div padding>
-        <button block (click)="getRepos()">Search</button>
-    </div>
-    <ion-card *ngFor="#repo of foundRepos" (click)="goToDetails(repo)">
-        <ion-card-header>
-            {{ repo.name }}
-        </ion-card-header>
-        <ion-card-content>
-            {{ repo.description }}
-        </ion-card-content>
-    </ion-card>
+
+    <ion-list *ngSwitchWhen="'Other Stuff'">
+      <ion-item>
+        <ion-thumbnail item-left>
+        </ion-thumbnail>
+        <h2>list item A</h2>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
+
+  <ion-tabs>
+    <ion-tab tabIcon="contact"  tabTitle="TAB 1" [root]="tab1"></ion-tab>
+    <ion-tab tabIcon="compass"  tabTitle="TAB 2" [root]="tab2"></ion-tab>
+    <ion-tab tabIcon="analytics"  tabTitle="TAB 3" [root]="tab3"></ion-tab>
+    <ion-tab tabIcon="settings"  tabTitle="TAB 4" [root]="tab4"></ion-tab>
+  </ion-tabs>`
